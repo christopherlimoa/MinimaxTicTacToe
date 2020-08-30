@@ -61,6 +61,13 @@ function draw() {
 				line(x, y, x + xr, y + xr);
 				line(x, y, x - xr, y + xr);
 			}
+
+			// draw O in board
+			else if (item == player2) {
+				let r = wBorder / 2;
+				noFill();
+				ellipse(x, y, r);
+			}
 		}
 	}
 }
