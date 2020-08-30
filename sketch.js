@@ -9,6 +9,21 @@ let player2 = "O";
 
 function setup() {
 	createCanvas(400, 400);
+
+	let alternator = true;
+
+	// fill board with alternate pattern
+	for (let i = 0; i < board.length; i++) {
+		for (let j = 0; j < board[0].length; j++) {
+			if (alternator == true) {
+				board[i][j] = "X";
+				alternator = !alternator;
+			} else {
+				board[i][j] = "O";
+				alternator = !alternator;
+			}
+		}
+	}
 }
 
 function draw() {
@@ -16,16 +31,36 @@ function draw() {
 	let w = width;
 	let h = height;
 
-	let wOffset = w / 3;
-	let hOffset = h / 3;
+	let wBorder = w / 3;
+	let hBorder = h / 3;
 
 	// horizontal border
-	line(0, hOffset, w, hOffset);
-	line(0, hOffset * 2, w, hOffset * 2);
+	line(0, hBorder, w, hBorder);
+	line(0, hBorder * 2, w, hBorder * 2);
 
 	// vertical border
-	line(wOffset, 0, wOffset, h);
-	line(wOffset * 2, 0, wOffset * 2, h);
+	line(wBorder, 0, wBorder, h);
+	line(wBorder * 2, 0, wBorder * 2, h);
 
+	// set line size (thickness)
 	strokeWeight(3);
+
+	// draw X and O in board
+	for (let i = 0; i < board.length; i++) {
+		for (let j = 0; j < board[0].length; j++) {
+			let item = board[i][j];
+			let x = wBorder * (i + 1) - wBorder / 2;
+			let y = hBorder * (j + 1) - hBorder / 2;
+
+			// draw X in board
+			if (item == player1) {
+				let xr = wBorder / 4;
+
+				line(x, y, x - xr, y - xr);
+				line(x, y, x + xr, y - xr);
+				line(x, y, x + xr, y + xr);
+				line(x, y, x - xr, y + xr);
+			}
+		}
+	}
 }
