@@ -5,19 +5,13 @@ let board = [
 ];
 
 let players = ["X", "O"];
-let available = [];
+let moveCount = 0;
+const MAX_MOVE_COUNT = 9;
 
 function setup() {
 	createCanvas(400, 400);
-	frameRate(1);
+	frameRate(5);
 	currentPlayer = floor(random(players.length));
-
-	// fill board with alternate pattern
-	for (let i = 0; i < board.length; i++) {
-		for (let j = 0; j < board[0].length; j++) {
-			available.push([i, j]);
-		}
-	}
 }
 
 function equals3(a, b, c) {
@@ -49,26 +43,25 @@ function checkWinner() {
 		winner = board[0][2];
 	}
 
-	if (winner == null && available.length == 0) {
+	if (winner == null && moveCount == MAX_MOVE_COUNT) {
 		return "tie";
 	} else {
 		return winner;
 	}
 }
 
-// function mousePressed() {
-// 	nextTurn();
-// }
+function mousePressed() {
+	// find the indices of mouse press based on 3x3 grid
+	i = floor(mouseX / (width/3) % 3);
+	j = floor(mouseY / (height/3) % 3);
 
-function nextTurn() {
-	let index = floor(random(available.length));
-	let spot = available.splice(index, 1)[0];
-	let i = spot[0];
-	let j = spot[1];
-	board[i][j] = players[currentPlayer];
-
-	// alternate player turn
-	currentPlayer = (currentPlayer + 1) % players.length;
+	if(board[i][j] == ""){
+		board[i][j] = players[currentPlayer];
+		moveCount += 1;
+		
+		// alternate player turn
+		currentPlayer = (currentPlayer + 1) % players.length;
+	}
 }
 
 function draw() {
@@ -129,6 +122,25 @@ function draw() {
 			winnerP.html("Winner is: " + winner);
 		}
 	} else {
-		nextTurn();
+		// nextTurn();
 	}
+}
+
+function keyPressed() {
+    if (keyCode == RETURN) {
+		resetValues();
+		removeElements()
+		setup();
+		loop();
+    }
+}
+
+function resetValues(){
+	board = [
+		["", "", ""],
+		["", "", ""],
+		["", "", ""],
+	];
+
+	moveCount = 0;
 }
