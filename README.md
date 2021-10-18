@@ -14,3 +14,7 @@ The project is created using **<span style="color:red">_p5.js_</span>** library.
    <br>
 
 3. If you don't like any of the options above, refer to p5.js [official guide](https://p5js.org/get-started/) for further information.
+
+## Preview
+
+![tictactoe](https://github.com/christopherlimoa/MinimaxTicTacToe/blob/master/gif/tictactoe.gif)
