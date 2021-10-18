@@ -13,4 +13,4 @@ The project is created using **<span style="color:red">_p5.js_</span>** library.
    If you are using Visual Studio Code, you can run this project with the [Live Server](https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer) extension for easier setup.
    <br>
 
-3. If you don't like any option above, refer to p5.js [official guide](https://p5js.org/get-started/) for further information.
+3. If you don't like any of the options above, refer to p5.js [official guide](https://p5js.org/get-started/) for further information.
